@@ -33,4 +33,8 @@ while True:
         break
 
 autorun = list(dict.fromkeys(autorun)) #Delete dublicate from list
-print(autorun)
+
+while autorun:
+    process_kill = autorun.pop(-1)
+    subprocess.run(["kill", "-9", process_kill]) #Command line kill -9 2321
+#print(autorun)
