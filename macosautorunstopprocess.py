@@ -1,5 +1,6 @@
 import subprocess
 import re
+import getpass
 
 process = subprocess.Popen(['lsof', '-i'],
                            stdout=subprocess.PIPE,
@@ -7,6 +8,7 @@ process = subprocess.Popen(['lsof', '-i'],
 
 #This is array get all active process after load OS
 autorun = []
+user_name_os = getpass.getuser()
 
 while True:
     output = process.stdout.readline()
@@ -19,7 +21,11 @@ while True:
         for output in process.stdout.readlines():
             row = re.search('ESTABLISHED', output)
             if row is not None:
-                autorun.append(row.string)
+                result = re.search('Python', output)
+                if result is None:
+                    regular_expression = '(?<=\ )\d*?(?=\ ' + user_name_os + ')'
+                    number_process = re.search(regular_expression, output)
+                    autorun.append(number_process.group(0))
             #print(output.strip())
         break
 
