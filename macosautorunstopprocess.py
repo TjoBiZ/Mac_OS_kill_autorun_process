@@ -29,4 +29,5 @@ while True:
             #print(output.strip())
         break
 
+autorun = list(dict.fromkeys(autorun)) #Delete dublicate from list
 print(autorun)
