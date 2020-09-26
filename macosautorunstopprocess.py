@@ -1,6 +1,9 @@
 import subprocess
 import re
 import getpass
+import time
+
+time.sleep(10) #Time sleep after start script
 
 process = subprocess.Popen(['lsof', '-i'],
                            stdout=subprocess.PIPE,
