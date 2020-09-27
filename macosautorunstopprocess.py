@@ -21,7 +21,7 @@ file_log = open("kill-processes.log", "w")
 
 
 i = 0
-while i <= 30:
+while i <= 15:
     i += 1
     # datetime object containing current date and time
     now = datetime.now()
@@ -35,7 +35,7 @@ while i <= 30:
     file_log.write(divider_line)
 
     time.sleep(4) #Time sleep after start script
-    if i == 30:
+    if i == 15:
         time.sleep(60)
 
     process = subprocess.Popen(['lsof', '-i'],
@@ -82,7 +82,7 @@ while i <= 30:
         #time.sleep(1)
         process_kill = autorun.pop(-1)
 
-        spw = 'Password'
+        spw = 'User_Password_Mac_OS'
         bashp = subprocess.Popen(['echo', spw], stdout=subprocess.PIPE)
 
         command = 'kill -9 ' + process_kill
@@ -95,8 +95,8 @@ while i <= 30:
 
 
 file_log.close()  # to change file access modes
-open_notes_with_log = "open -a TextEdit kill-processes.log"
+open_notes_with_log = "open /Applications/TextEdit.app /Users/joker/Downloads/websites/python/consolemacos/kill-processes.log"
 open_notes_with_log = open_notes_with_log.split()
-spw = 'Password'
+spw = 'User_Password_Mac_OS'
 bashp = subprocess.Popen(['echo', spw], stdout=subprocess.PIPE)
 bash = subprocess.Popen(['sudo', '-S'] + open_notes_with_log, stdin=bashp.stdout, stdout=subprocess.PIPE)
